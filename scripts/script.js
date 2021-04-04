@@ -13,7 +13,7 @@ function insertTask() {
         b.setAttribute("type", "button");
         b.setAttribute("id", "done");
         b.setAttribute("value", "Done");
-        b.setAttribute("onclick", "doneTask(this)");
+        b.setAttribute("onclick", "taskDone(this)");
 
         var c = document.createElement("input");
         c.setAttribute("type", "button");
@@ -34,7 +34,7 @@ function insertTask() {
     }
 }
 
-function doneTask(este) {
+function taskDone(este) {
 
     var a = este.parentNode;
     var b = a.firstChild;
