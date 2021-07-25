@@ -1,3 +1,15 @@
+function setAttributes(el, attrs) {
+    for(var key in attrs) {
+        el.setAttribute(key, attrs[key]);
+    }
+}
+
+function setChilds(el, childs) {
+    for(var key in childs) {
+        el.appendChild(childs[key]);
+    }
+}
+
 function insertTask() {
 
     var element = document.getElementById("task");
@@ -6,28 +18,20 @@ function insertTask() {
 
     if (task.length > 0) {
 
-        var a = document.createElement("p");
-        a.appendChild(textTask);
+        var p = document.createElement("p");
+        p.appendChild(textTask);
 
-        var b = document.createElement("input");
-        b.setAttribute("type", "button");
-        b.setAttribute("id", "done");
-        b.setAttribute("value", "Done");
-        b.setAttribute("onclick", "taskDone(this)");
+        let done = document.createElement("input");
+        setAttributes(done, { "type": "button", "id": "done", "value": "Done", "onclick": "taskDone(this)" });
 
-        var c = document.createElement("input");
-        c.setAttribute("type", "button");
-        c.setAttribute("id", "delete");
-        c.setAttribute("value", "Delete");
-        c.setAttribute("onclick", "deleteTask(this);");
+        let del = document.createElement("input");
+        setAttributes(del, { "type": "button", "id": "delete", "value": "Delete", "onclick": "deleteTask(this)" });
 
-        var d = document.createElement("li");
-        d.appendChild(a);
-        d.appendChild(b);
-        d.appendChild(c);
+        var li = document.createElement("li");
+        setChilds(li, { p, done, del });
         
-        var e = document.getElementById("cont");
-        e.appendChild(d);
+        var cont = document.getElementById("cont");
+        cont.appendChild(li);
 
         element.value = "";
 
@@ -36,16 +40,14 @@ function insertTask() {
 
 function taskDone(este) {
 
-    var a = este.parentNode;
-    var b = a.firstChild;
-    var task = b.innerHTML;
+    var element = este.parentNode;
+    var child = element.firstChild;
+    var task = child.innerHTML;
     var newElem = document.createElement("s");
 
     newElem.textContent = task;
 
-    console.log(newElem);
-
-    a.replaceChild(newElem, b);
+    element.replaceChild(newElem, child);
 
     este.remove();
 
