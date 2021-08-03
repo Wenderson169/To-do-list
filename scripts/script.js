@@ -1,24 +1,24 @@
 function setAttributes(el, attrs) {
-    for(var key in attrs) {
+    for(let key in attrs) {
         el.setAttribute(key, attrs[key]);
     }
 }
 
 function setChilds(el, childs) {
-    for(var key in childs) {
+    for(let key in childs) {
         el.appendChild(childs[key]);
     }
 }
 
 function insertTask() {
 
-    var element = document.getElementById("task");
-    var task = element.value;
-    var textTask = document.createTextNode(task);
+    let element = document.getElementById("task");
+    let task = element.value;
+    let textTask = document.createTextNode(task);
 
     if (task.length > 0) {
 
-        var p = document.createElement("p");
+        let p = document.createElement("p");
         p.appendChild(textTask);
 
         let done = document.createElement("input");
@@ -27,10 +27,10 @@ function insertTask() {
         let del = document.createElement("input");
         setAttributes(del, { "type": "button", "id": "delete", "value": "Delete", "onclick": "deleteTask(this)" });
 
-        var li = document.createElement("li");
+        let li = document.createElement("li");
         setChilds(li, { p, done, del });
         
-        var cont = document.getElementById("cont");
+        let cont = document.getElementById("cont");
         cont.appendChild(li);
 
         element.value = "";
@@ -40,10 +40,10 @@ function insertTask() {
 
 function taskDone(este) {
 
-    var element = este.parentNode;
-    var child = element.firstChild;
-    var task = child.innerHTML;
-    var newElem = document.createElement("s");
+    let element = este.parentNode;
+    let child = element.firstChild;
+    let task = child.innerHTML;
+    let newElem = document.createElement("s");
 
     newElem.textContent = task;
 
